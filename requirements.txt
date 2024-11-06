@@ -1,9 +1,13 @@
+#airflow
 apache-airflow==2.7.0
 apache-airflow-providers-common-sql==1.7.1
 apache-airflow-providers-ftp==3.5.1
 apache-airflow-providers-http==4.5.1
 apache-airflow-providers-imap==3.3.1
 apache-airflow-providers-sqlite==3.4.3
+#Mongo
+pymongo
+#flask
 Flask==2.2.5
 Flask-AppBuilder==4.3.3
 Flask-Babel==2.0.0
@@ -15,6 +19,7 @@ Flask-Session==0.5.0
 Flask-SQLAlchemy==2.5.1
 Flask-WTF==1.1.1
 six==1.16.0
+#sqlAlchemy ORM
 SQLAlchemy==1.4.49
 SQLAlchemy-JSONField==1.0.1.post0
 SQLAlchemy-Utils==0.41.1
