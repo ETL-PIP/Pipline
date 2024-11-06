@@ -5,9 +5,9 @@ building a data pipeline with Apache Airflow to load data from multiple sources 
 * install docker-descktop  [link](https://docs.docker.com/desktop/install/ubuntu/).
 
 ## Getting started
-* At first you'll need to get the source code of the project. Do this by cloning the [ETL-PIP](https://https://github.com/ETL-PIP/Pipline.git).
+* At first you'll need to get the source code of the project. Do this by cloning the [ETL-PIP](https://github.com/ETL-PIP/Pipline).
 ```
-git clone https://github.com/ETL-PIP/Pipline.gitcd ML-system-recommendation
+git clone https://github.com/ETL-PIP/Pipline.git
 ```
 * navigate to path the project
 ```

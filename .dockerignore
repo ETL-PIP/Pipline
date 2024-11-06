@@ -12,8 +12,6 @@ __pycache__
 *.log
 *.cache
 
-# Exclude CSV files
-*.csv
 
 # Exclude virtual environment files
 .venv/

@@ -20,6 +20,7 @@ services:
       - ./dags:/opt/airflow/dags
       - ./script/entrypoint.sh:/opt/airflow/script/entrypoint.sh
       - ./requirements.txt:/opt/airflow/requirements.txt
+      - ./data:/opt/airflow/dags/data  # Mounts data directory for JSON files
     ports:
       - "8080:8080"
     healthcheck:
@@ -39,6 +40,7 @@ services:
       - ./dags:/opt/airflow/dags
       - ./script/entrypoint.sh:/opt/airflow/script/entrypoint.sh
       - ./requirements.txt:/opt/airflow/requirements.txt
+      - ./data:/opt/airflow/dags/data  # Mounts data directory for JSON files
     environment:
       - LOAD_EX=n
       - EXECUTOR=Sequential
