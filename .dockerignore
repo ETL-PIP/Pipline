@@ -1,0 +1,30 @@
+# Exclude Python bytecode files
+__pycache__
+
+# Exclude version control system files
+.git
+.gitignore
+
+# Exclude editor-specific files
+.vscode/
+
+# Exclude temporary and cache files
+*.log
+*.cache
+
+# Exclude CSV files
+*.csv
+
+# Exclude virtual environment files
+.venv/
+
+# Exclude README file (if you don't want it in version control)
+README.md
+#file docker 
+.dockerignore
+docker-compose.yml
+dockerfile
+
+env/
+imgs/
+LICENSE
