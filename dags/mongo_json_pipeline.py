@@ -1,6 +1,5 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from airflow.hooks.base_hook import BaseHook
 from pymongo import MongoClient
 from datetime import datetime
 import json
@@ -16,11 +15,11 @@ def combine_json_data():
         data1 = json.load(file1)
         data2 = json.load(file2)
         
-        # Combine data: Adjust based on your structure (lists or dictionaries)
+        # Combine data based on structure (lists or dictionaries)
         if isinstance(data1, list) and isinstance(data2, list):
-            combined_data = data1 + data2  # Concatenate lists if both are lists
+            combined_data = data1 + data2  # Concatenate lists
         else:
-            combined_data = {**data1, **data2}  # Merge dictionaries if both are dicts
+            combined_data = {**data1, **data2}  # Merge dictionaries
         
         return combined_data
 
@@ -29,27 +28,26 @@ def store_in_mongodb(**context):
     # Retrieve the combined data from XCom
     combined_data = context['ti'].xcom_pull(task_ids='combine_json_data')
     
-    # Get MongoDB connection URI from Airflow
-    conn = BaseHook.get_connection("mongo_atlas")
-    mongo_uri = conn.extra_dejson.get("uri")
+    # Direct MongoDB connection URI (replace BaseHook with direct URI for troubleshooting)
+    mongo_uri = "mongodb+srv://admin:samir5636@cluster0.ghz8l.mongodb.net/?retryWrites=true&w=majority"
     
     # Connect to MongoDB Atlas
-    client = MongoClient(mongo_uri)
-    db = client["Cluster0"]  # Use your database name
-    collection = db["combined_data_collection"]  # Use your desired collection name
+    client = MongoClient(mongo_uri, tls=True, tlsAllowInvalidCertificates=True)
+    db = client["sample_mflix"]  # Set the database name as seen in MongoDB Atlas
+    collection = db["combined_data_collection"]  # Set the collection name as seen in MongoDB Atlas
     
-    # Insert the combined data into MongoDB
+    # Insert combined data into MongoDB
     if isinstance(combined_data, list):
         collection.insert_many(combined_data)  # Insert list of documents
     else:
-        collection.insert_one(combined_data)  # Insert single document if not list
+        collection.insert_one(combined_data)  # Insert single document if not a list
 
 # Define the DAG
 with DAG(
     'mongo_json_pipeline',
     default_args={'retries': 1},
     schedule_interval='@daily',
-    start_date=datetime(2023, 1, 1),
+    start_date=datetime(2024, 11, 7),
     catchup=False,
 ) as dag:
     
