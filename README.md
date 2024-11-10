@@ -1,8 +1,6 @@
 # Pipline
 building a data pipeline with Apache Airflow to load data from multiple sources into a data warehouse 
-
 ![architecture](https://github.com/ETL-PIP/Pipline/blob/main/imgs/arch.png)
-
 ## Must be you have docker for run containers
 * install docker-descktop  [link](https://docs.docker.com/desktop/install/ubuntu/).
 
@@ -24,17 +22,14 @@ chmod +x /script/entrypoint.sh
 ```
 docker-compose up
 ```
-
-### 1. **Airflow DAG (`dags/pipeline_dag.py`)**
-
-*The core of the ETL process is orchestrated with **Apache Airflow**. The pipeline is defined in the file `dags/pipeline_dag.py`, which contains several tasks:
+**Airflow DAG (`dags/pipeline_dag.py`)**
 
 ![architecture](https://github.com/ETL-PIP/Pipline/blob/main/imgs/Dag.png)
 
-*dashboard the airflow for monitoring
+**dashboard the airflow for monitoring**
 
 ![architecture](https://github.com/ETL-PIP/Pipline/blob/main/imgs/dash.png)
 
-*data the all resources in data warehouse
+**data the all resources in data warehouse**
 
 ![architecture](https://github.com/ETL-PIP/Pipline/blob/main/imgs/mongo.png)
