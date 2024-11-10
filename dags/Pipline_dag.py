@@ -134,7 +134,7 @@ def store_sqlite_data_in_mongodb(**context):
 
 # Define the DAG
 with DAG(
-    'mongo_json_mysql_pipeline',
+    'mongo_pipeline',
     default_args={'retries': 1},
     schedule_interval='@daily',
     start_date=datetime(2024, 11, 7),
