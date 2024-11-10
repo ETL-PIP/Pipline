@@ -22,6 +22,29 @@ chmod +x /script/entrypoint.sh
 ```
 docker-compose up
 ```
+
+* Create the .env File
+### MongoDB Connection URI
+MONGO_URI="mongodb+srv://admin:your_mongodb_password@cluster0.mongodb.net/?retryWrites=true&w=majority"
+
+### MySQL Configuration
+MYSQL_HOST="mysql_container"   # The MySQL container name (ensure Docker setup aligns with this)
+MYSQL_USER="admin"             # MySQL username
+MYSQL_PASSWORD="your_mysql_password"
+MYSQL_DATABASE="mydatabase"
+
+### Directory for JSON/SQLite files
+DATA_DIR="/opt/airflow/dags/data/"
+
+## Prerequisites
+
+- Docker
+- Docker Compose
+- Python 3.8+
+- Apache Airflow
+- MongoDB Atlas
+- MySQL database
+
 **Airflow DAG (`dags/pipeline_dag.py`)**
 
 ![architecture](https://github.com/ETL-PIP/Pipline/blob/main/imgs/Dag.png)

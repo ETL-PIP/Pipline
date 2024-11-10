@@ -73,9 +73,9 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./sampled_data_part_6.csv:/var/lib/mysql-files/sampled_data_part_6.csv
-      - ./sampled_data_part_7.csv:/var/lib/mysql-files/sampled_data_part_7.csv
+      - ./script/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data/sampled_data_part_6.csv:/var/lib/mysql-files/sampled_data_part_6.csv
+      - ./data/sampled_data_part_7.csv:/var/lib/mysql-files/sampled_data_part_7.csv
     networks:
       - pipline
 

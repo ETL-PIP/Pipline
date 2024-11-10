@@ -2,16 +2,22 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from pymongo import MongoClient
 from datetime import datetime, date
+from dotenv import load_dotenv
 import mysql.connector
 import json
 import os
 import sqlite3
 
-# Path to the directory containing JSON files
-DATA_DIR = '/opt/airflow/dags/data/'
+# Load environment variables from the .env file
+load_dotenv()
 
-# MongoDB connection URI
-mongo_uri = "mongodb+srv://admin:samir5636@cluster0.ghz8l.mongodb.net/?retryWrites=true&w=majority"
+# Retrieve sensitive data from environment variables
+DATA_DIR = os.getenv("DATA_DIR")
+mongo_uri = os.getenv("MONGO_URI")
+mysql_host = os.getenv("MYSQL_HOST")
+mysql_user = os.getenv("MYSQL_USER")
+mysql_password = os.getenv("MYSQL_PASSWORD")
+mysql_database = os.getenv("MYSQL_DATABASE")
 
 def combine_json_data():
     """Reads and combines data from all JSON files in the data directory with newline-separated JSON objects."""
@@ -41,10 +47,10 @@ def retrieve_mysql_data():
     mysql_data = []
     try:
         conn = mysql.connector.connect(
-            host="mysql_container",  # Ensure this matches your Docker setup (use container name if needed)
-            user="admin",
-            password="modepass",
-            database="mydatabase"
+            host=mysql_host,
+            user=mysql_user,
+            password=mysql_password,
+            database=mysql_database
         )
         cursor = conn.cursor(dictionary=True)
         query = "SELECT * FROM player_appearances"
